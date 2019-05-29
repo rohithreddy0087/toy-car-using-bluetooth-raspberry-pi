@@ -1,0 +1,70 @@
+char data=0;
+
+const int m1p=2;
+
+const int m1n=3;
+
+const int m2p=4;
+
+const int m2n=5;
+
+void setup()
+{
+  Serial.begin(9600);
+  
+  pinMode(m1p,OUTPUT);
+  pinMode(m1n,OUTPUT);
+  pinMode(m2p,OUTPUT);
+  pinMode(m2n,OUTPUT);
+}
+           
+void loop()
+{
+  if(Serial.available()>0)
+  {
+    data=Serial.read();
+    Serial.println(data);
+    if(data=='8')               
+    {
+      digitalWrite(m1p,HIGH);
+      digitalWrite(m1n,LOW);
+      digitalWrite(m2p,HIGH);
+      digitalWrite(m2n,LOW);
+      Serial.println("forward");
+    }
+    else if(data=='2')
+    {
+      digitalWrite(m1p,LOW);
+      digitalWrite(m1n,HIGH);
+      digitalWrite(m2p,LOW);
+      digitalWrite(m2n,HIGH);
+Serial.println("back");
+    }
+    else if(data=='4')
+    {
+      digitalWrite(m1p,HIGH);
+      digitalWrite(m1n,LOW);
+      digitalWrite(m2p,LOW);
+      digitalWrite(m2n,LOW);
+      Serial.println("left");
+    }
+    else if(data=='6')
+    {
+      digitalWrite(m1p,LOW);
+      digitalWrite(m1n,LOW);
+      digitalWrite(m2p,HIGH);
+      digitalWrite(m2n,LOW);
+      Serial.println("right");
+    }
+    else if(data=='5')
+    {
+      digitalWrite(m1p,LOW);
+      digitalWrite(m1n,LOW);
+      digitalWrite(m2p,LOW);
+      digitalWrite(m2n,LOW);
+      Serial.println("stop");
+    }
+    
+  }
+  
+}
